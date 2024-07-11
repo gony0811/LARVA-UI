@@ -97,6 +97,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.exe
 
 # Chutzpah Test files
 _Chutzpah*
@@ -301,7 +302,7 @@ node_modules/
 *.dsw
 *.dsp
 
-# Visual Studio 6 technical files
+# Visual Studio 6 technical files 
 *.ncb
 *.aps
 
@@ -396,3 +397,21 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+EPLE.App/obj/Debug/EPLE.App.csproj.CoreCompileInputs.cache
+Bin/LARVA_UI.pdb
+*.pdb
+*.cache
+/EPLE.App/[Bb]in
+/EPLE.App/obj
+/LARVA_UI/[Bb]in
+/LARVA_UI/obj
+/LARVA.Scheduler/[Bb]in
+/LARVA.Scheduler/obj
+/LARVA.Function/[Bb]in
+/LARVA.Function/obj
+/EPLE.IO/[Bb]in
+/EPLE.IO/obj
+/EPLE.Core/[Bb]in
+/EPLE.Core/obj
+/Device.TwinCAT/[Bb]in
+/Device.TwinCAT/obj
