@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FileList>
+  <File Reference="DevExpress.Xpf.Spreadsheet.v23.1.dll">
+    <ToolboxItems UIFramework="WPF" VSCategory="DX.23.1: Spreadsheet" BlendCategory="DX.23.1: Spreadsheet">
+      <Item Type="DevExpress.Xpf.Spreadsheet.SpreadsheetFormulaBarControl" />
+      <Item Type="DevExpress.Xpf.Spreadsheet.SpreadsheetControl" />
+    </ToolboxItems>
+  </File>
+</FileList>

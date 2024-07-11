@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FileList>
+  <File Reference="DevExpress.Xpf.PdfViewer.v23.1.dll">
+    <ToolboxItems UIFramework="WPF" VSCategory="DX.23.1: Data &amp; Analytics" BlendCategory="DX.23.1: Data &amp; Analytics">
+      <Item Type="DevExpress.Xpf.PdfViewer.PdfViewerControl" />
+    </ToolboxItems>
+  </File>
+</FileList>

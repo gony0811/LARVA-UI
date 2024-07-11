@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FileList>
+  <File Reference="DevExpress.Xpf.Scheduling.v23.1.dll">
+    <ToolboxItems UIFramework="WPF" VSCategory="DX.23.1: Scheduling" BlendCategory="DX.23.1: Scheduling">
+      <Item Type="DevExpress.Xpf.Scheduling.SchedulerControl" />
+      <Item Type="DevExpress.Xpf.Scheduling.ResourceTreeControl" />
+      <Item Type="DevExpress.Xpf.Scheduling.Editors.AppointmentResourceEdit" />
+      <Item Type="DevExpress.Xpf.Scheduling.Editors.TimeZoneEdit" />
+      <Item Type="DevExpress.Xpf.Scheduling.Editors.AppointmentResourcesEdit" />
+      <Item Type="DevExpress.Xpf.Scheduling.Editors.DurationEdit" />
+      <Item Type="DevExpress.Xpf.Scheduling.Editors.AppointmentLabelEdit" />
+      <Item Type="DevExpress.Xpf.Scheduling.Editors.AppointmentStatusEdit" />
+    </ToolboxItems>
+  </File>
+</FileList>

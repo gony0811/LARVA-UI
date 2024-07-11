@@ -1,0 +1,28 @@
+<FileList>
+  <File Reference="DevExpress.XtraScheduler.v23.1.dll">
+    <ToolboxItems UIFramework="WinForms" VSCategory="DX.23.1: Scheduling">
+      <Item Type="DevExpress.XtraScheduler.SchedulerDataStorage" />
+      <Item Type="DevExpress.XtraScheduler.SchedulerControl" />
+      <Item Type="DevExpress.XtraScheduler.DateNavigator" />
+      <Item Type="DevExpress.XtraScheduler.UI.HourlyRecurrenceControl" />
+      <Item Type="DevExpress.XtraScheduler.UI.MinutelyRecurrenceControl" />
+      <Item Type="DevExpress.XtraScheduler.UI.AppointmentLabelEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.AppointmentResourceEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.AppointmentResourcesEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.AppointmentStatusEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.DailyRecurrenceControl" />
+      <Item Type="DevExpress.XtraScheduler.UI.DurationEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.MonthEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.MonthlyRecurrenceControl" />
+      <Item Type="DevExpress.XtraScheduler.UI.ResourcesCheckedListBoxControl" />
+      <Item Type="DevExpress.XtraScheduler.UI.ResourcesComboBoxControl" />
+      <Item Type="DevExpress.XtraScheduler.UI.ResourcesPopupCheckedListBoxControl" />
+      <Item Type="DevExpress.XtraScheduler.UI.TimeZoneEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.WeekDaysCheckEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.WeekDaysEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.WeeklyRecurrenceControl" />
+      <Item Type="DevExpress.XtraScheduler.UI.WeekOfMonthEdit" />
+      <Item Type="DevExpress.XtraScheduler.UI.YearlyRecurrenceControl" />
+    </ToolboxItems>
+  </File>
+</FileList>

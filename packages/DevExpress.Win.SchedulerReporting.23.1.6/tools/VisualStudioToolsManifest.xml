@@ -1,0 +1,5 @@
+<FileList>
+  <File Reference="DevExpress.XtraScheduler.v23.1.Reporting.dll">
+    <ToolboxItems UIFramework="WinForms" VSCategory="DX.23.1: Data &amp; Analytics" />
+  </File>
+</FileList>

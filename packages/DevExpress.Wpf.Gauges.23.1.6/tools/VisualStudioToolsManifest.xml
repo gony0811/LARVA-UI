@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FileList>
+  <File Reference="DevExpress.Xpf.Gauges.v23.1.dll">
+    <ToolboxItems UIFramework="WPF" VSCategory="DX.23.1: Data &amp; Analytics" BlendCategory="DX.23.1: Data &amp; Analytics">
+      <Item Type="DevExpress.Xpf.Gauges.DigitalGaugeControl" />
+      <Item Type="DevExpress.Xpf.Gauges.LinearGaugeControl" />
+      <Item Type="DevExpress.Xpf.Gauges.CircularGaugeControl" />
+      <Item Type="DevExpress.Xpf.Gauges.StateIndicatorControl" />
+    </ToolboxItems>
+  </File>
+</FileList>

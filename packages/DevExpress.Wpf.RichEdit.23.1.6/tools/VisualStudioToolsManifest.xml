@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FileList>
+  <File Reference="DevExpress.Xpf.RichEdit.v23.1.dll">
+    <ToolboxItems UIFramework="WPF" VSCategory="DX.23.1: Rich Text Editor" BlendCategory="DX.23.1: Rich Text Editor">
+      <Item Type="DevExpress.Xpf.RichEdit.RichEditControl" />
+    </ToolboxItems>
+  </File>
+</FileList>

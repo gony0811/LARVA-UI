@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FileList>
+  <File Reference="DevExpress.Xpf.ReportDesigner.v23.1.dll">
+    <ToolboxItems UIFramework="WPF" VSCategory="DX.23.1: Reporting" BlendCategory="DX.23.1: Reporting">
+      <Item Type="DevExpress.Xpf.Reports.UserDesigner.ReportDesigner" />
+    </ToolboxItems>
+  </File>
+</FileList>

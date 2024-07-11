@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FileList>
+  <File Reference="DevExpress.Xpf.Carousel.v23.1.dll">
+    <ToolboxItems UIFramework="WPF" VSCategory="DX.23.1: Navigation &amp; Layout" BlendCategory="DX.23.1: Navigation &amp; Layout">
+      <Item Type="DevExpress.Xpf.Carousel.CarouselPanel" />
+      <Item Type="DevExpress.Xpf.Carousel.CarouselItemsControl" />
+      <Item Type="DevExpress.Xpf.Carousel.CarouselNavigator" />
+    </ToolboxItems>
+  </File>
+</FileList>
