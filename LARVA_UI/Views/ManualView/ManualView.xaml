@@ -1,0 +1,832 @@
+﻿<UserControl x:Class="LARVA_UI.Views.ManualView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:ViewModels="clr-namespace:LARVA_UI.ViewModels"
+             xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             d:DesignHeight="1000" d:DesignWidth="1800" dxc:ThemeManager.ThemeName="Office2019White;Touch">
+    <UserControl.Resources>
+        <Style x:Key="ManualButtonStyle" TargetType="{x:Type dxc:SimpleButton}">
+            <Style.Triggers>
+                <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+                    <Setter Property="Padding" Value="27,11,27,11"/>
+                </Trigger>
+                <Trigger Property="Content" Value="{x:Null}">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="GlyphToContentOffset" Value="0"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True"/>
+                        <Condition Property="ToggleButton.IsChecked" Value="False"/>
+                        <Condition Property="IsPressed" Value="False"/>
+                    </MultiTrigger.Conditions>
+
+                </MultiTrigger>
+
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" Value="LightGreen"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="False">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+
+                <Trigger Property="IsMouseOver" Value="True">
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModels:ManualViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <dxwui:PageAdornerControl Header="Manual" Grid.Row="0" >
+            <dxwui:PageAdornerControl.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <ContentPresenter Content="{Binding}"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                            <dxc:SimpleButton FontSize="14" Margin="10, 0, 0, 0" Width="150" Content="HOME" dxwuin:Navigation.NavigateTo="MainView" Glyph="pack://application:,,,/DevExpress.Images.v23.1;component/Office2013/Navigation/Home_16x16.png"/>
+                            <!--<dxc:SimpleButton FontSize="14" Margin="10, 0, 0, 0" Width="150" Content="MANUAL" dxwuin:Navigation.NavigateTo="ManualView" Glyph="pack://application:,,,/DevExpress.Images.v23.1;component/Images/Programming/IDE_16x16.png"/>-->
+                            <dxc:SimpleButton FontSize="14" Margin="10, 0, 0, 0" Width="150" Content="SETTINGS" dxwuin:Navigation.NavigateTo="SettingsView" Glyph="pack://application:,,,/DevExpress.Images.v23.1;component/Images/Programming/Technology_16x16.png"/>
+                            <dxc:SimpleButton FontSize="14" Margin="10, 0, 0, 0" Width="150" Content="ALARM" dxwuin:Navigation.NavigateTo="AlarmView" Glyph="pack://application:,,,/DevExpress.Images.v23.1;component/Images/Scheduling/Reminder_16x16.png"/>
+                            <dxc:SimpleButton FontSize="14" Margin="10, 0, 0, 0" Width="150" Content="I/O Monitoring" dxwuin:Navigation.NavigateTo="IoMonitoringView" Glyph="pack://application:,,,/DevExpress.Images.v23.1;component/Office2013/Miscellaneous/Palette_16x16.png"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </dxwui:PageAdornerControl.HeaderTemplate>
+        </dxwui:PageAdornerControl>
+        <dxc:DXTabControl Grid.Row="1" SelectedIndex="0">
+            <dxmvvm:Interaction.Triggers>
+                <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding TabControlLoadedCommand}" PassEventArgsToCommand="True"/>
+                <!--<dxmvvm:EventToCommand EventName="SelectionChanged" Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>-->
+            </dxmvvm:Interaction.Triggers>
+            <dxc:DXTabItem Header="공정 제어" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                <dxlc:FlowLayoutControl Grid.Row="1" x:Name="layoutItems" ItemMovingAnimationDuration="0:0:0.1" Background="Gray">
+                    <dxlc:LayoutGroup View="GroupBox" MinWidth="300" VerticalAlignment="Stretch" Orientation="Vertical" Header="박스투입구">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <GroupBox Header="투입구 셔터" Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="열림" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding LoaderShutterOpen_IsChecked}" IsHitTestVisible="{Binding LoaderShutterOpen_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding LoaderShutterCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="닫힘" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding LoaderShutterClose_IsChecked}" IsHitTestVisible="{Binding LoaderShutterClose_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding LoaderShutterCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="박스 투입판" Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="전진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding LoaderShuttleFwd_IsChecked}" IsHitTestVisible="{Binding LoaderShuttleFwd_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding LoaderShuttleCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+
+                                    <dxc:SimpleButton Content="후진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding LoaderShuttleBwd_IsChecked}" IsHitTestVisible="{Binding LoaderShuttleBwd_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding LoaderShuttleCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="GroupBox" MinWidth="300" VerticalAlignment="Stretch" Orientation="Vertical" Header="세정UNIT">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <GroupBox Header="수조 물공급 밸브" Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="열림" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WaterTankValveOpen_IsChecked}" IsHitTestVisible="{Binding WaterTankValveOpen_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WaterTankValveCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="닫힘" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WaterTankValveClose_IsChecked}" IsHitTestVisible="{Binding WaterTankValveClose_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WaterTankValveCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="박스 세정 밸브" Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="열림" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WashWaterValveOpen_IsChecked}" IsHitTestVisible="{Binding WashWaterValveOpen_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WashWaterCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="닫힘" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WashWaterValveClose_IsChecked}" IsHitTestVisible="{Binding WashWaterValveClose_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WashWaterCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="세정 펌프" Grid.Row="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="구동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WashWaterPumpOn_IsChecked}" IsHitTestVisible="{Binding WashWaterPumpOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WaterPumpCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="정지" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WashWaterPumpOff_IsChecked}" IsHitTestVisible="{Binding WashWaterPumpOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WaterPumpCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="세정 블로우" Grid.Row="3">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="구동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WashBlowerOn_IsChecked}" IsHitTestVisible="{Binding WashBlowerOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WashBlowerCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="정지" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WashBlowerOff_IsChecked}" IsHitTestVisible="{Binding WashBlowerOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WashBlowerCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="UV LAMP" Grid.Row="4">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="켜짐" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding UVLampOn_IsChecked}" IsHitTestVisible="{Binding UVLampOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding UVLampCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="꺼짐" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding UVLampOff_IsChecked}" IsHitTestVisible="{Binding UVLampOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding UVLampCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="GroupBox" MinWidth="300" VerticalAlignment="Stretch" Orientation="Vertical" Header="톱밥 제거 Flip">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <GroupBox Header="상부 커버" Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="위로"   MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding UpperCoverUp_IsChecked}" IsHitTestVisible="{Binding UpperCoverUp_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding UpperCoverCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="아래로" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding UpperCoverDown_IsChecked}" IsHitTestVisible="{Binding UpperCoverDown_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding UpperCoverCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="박스 타격 실린더" Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="구동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ImpactCylinderRun_IsChecked}" IsHitTestVisible="{Binding ImpactCylinderRun_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ImpactCylinderCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="정지" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ImpactCylinderStop_IsChecked}" IsHitTestVisible="{Binding ImpactCylinderStop_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ImpactCylinderCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="타격 실린더(1) : 좌1우2" Grid.Row="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="전진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ImpactCylinder1Fwd_IsChecked}" IsHitTestVisible="{Binding ImpactCylinder1Fwd_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ImpactCylinder1CommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="후진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ImpactCylinder1Bwd_IsChecked}" IsHitTestVisible="{Binding ImpactCylinder1Bwd_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ImpactCylinder1CommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="타격 실린더(2) : 좌2우1" Grid.Row="3">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="전진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ImpactCylinder2Fwd_IsChecked}" IsHitTestVisible="{Binding ImpactCylinder2Fwd_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ImpactCylinder2CommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="후진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ImpactCylinder2Bwd_IsChecked}" IsHitTestVisible="{Binding ImpactCylinder2Bwd_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ImpactCylinder2CommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="배출 컨베이어" Grid.Row="4">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="구동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding OutConveyorOn_IsChecked}" IsHitTestVisible="{Binding OutConveyorOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding OutConveyorCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="정지" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding OutConveyorOff_IsChecked}" IsHitTestVisible="{Binding OutConveyorOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding OutConveyorCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="톱밥 배출 DOOR" Grid.Row="5">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="열림" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlipOutShutterOpen_IsChecked}" IsHitTestVisible="{Binding FlipOutShutterOpen_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipOutShutterCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="닫힘" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlipOutShutterClose_IsChecked}" IsHitTestVisible="{Binding FlipOutShutterClose_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipOutShutterCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Flip Zone LED" Grid.Row="6">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="켜짐" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlipZoneLEDOn_IsChecked}" IsHitTestVisible="{Binding FlipZoneLEDOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipZoneLEDCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="꺼짐" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlipZoneLEDOff_IsChecked}" IsHitTestVisible="{Binding FlipZoneLEDOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipZoneLEDCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Flip 유닛 위치" Grid.Column="1" Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="정위치" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlipLocationFaceUp_IsChecked}" IsHitTestVisible="{Binding FlipLocationFaceUp_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipLocationCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="반전위치" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlipLocationFaceDown_IsChecked}" IsHitTestVisible="{Binding FlipLocationFaceDown_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipLocationCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="GroupBox" MinWidth="300" VerticalAlignment="Stretch" Orientation="Vertical" Header="톱밥 공급" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Header="열풍기" Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="켜짐" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding HotAirBlowerOn_IsChecked}" IsHitTestVisible="{Binding HotAirBlowerOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding HotAirBlowerCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="꺼짐" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding HotAirBlowerOff_IsChecked}" IsHitTestVisible="{Binding HotAirBlowerOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding HotAirBlowerCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="수분 공급" Grid.Row="2" Grid.Column="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="열림" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding MistValveOn_IsChecked}" IsHitTestVisible="{Binding MistValveOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding MistCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="닫힘" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding MistValveOff_IsChecked}" IsHitTestVisible="{Binding MistValveOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding MistCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="톱밥공급 셔터" Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="열림" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TbsShutterOpen_IsChecked}" IsHitTestVisible="{Binding TbsShutterOpen_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding TbsShutterCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="닫힘" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TbsShutterClose_IsChecked}" IsHitTestVisible="{Binding TbsShutterClose_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding TbsShutterCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="톱밥공급 Unit" Grid.Row="0" Grid.Column="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="상승" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TbsCylinderUp_IsChecked}" IsHitTestVisible="{Binding TbsCylinderUp_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding TbsCylinderUpDownCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="하강" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TbsCylinderDown_IsChecked}" IsHitTestVisible="{Binding TbsCylinderDown_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding TbsCylinderUpDownCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="톱밥 믹서기" Grid.Row="1" Grid.Column="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="구동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding MixerRun_IsChecked}" IsHitTestVisible="{Binding MixerRun_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding MixerCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="정지" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding MixerStop_IsChecked}" IsHitTestVisible="{Binding MixerStop_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding MixerCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="박스 평탄화 진동" Grid.Row="2" Grid.Column="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="구동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlatMotorRun_IsChecked}" IsHitTestVisible="{Binding FlatMotorRun_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlatMotorCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="정지" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlatMotorStop_IsChecked}" IsHitTestVisible="{Binding FlatMotorStop_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlatMotorCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="평탄화 박스 스토퍼" Grid.Row="3" Grid.Column="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="닫힘" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding BoxStopperUp_IsChecked}" IsHitTestVisible="{Binding BoxStopperUp_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxStopperCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="대기" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding BoxStopperDown_IsChecked}" IsHitTestVisible="{Binding BoxStopperDown_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxStopperCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="GroupBox" MinWidth="250" VerticalAlignment="Stretch" Orientation="Vertical" Header="환기">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Header="서큘레이터" Grid.Column="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="구동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding CirculatorFanOn_IsChecked}" IsHitTestVisible="{Binding CirculationFanOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding CirculatorCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="정지" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding CirculatorFanOff_IsChecked}" IsHitTestVisible="{Binding CirculationFanOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding CirculatorCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="암모니아팬" Grid.Column="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="구동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding AmmoniaFanOn_IsChecked}" IsHitTestVisible="{Binding AmmoniaFanOn_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding AmmoniaCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="정지" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding AmmoniaFanOff_IsChecked}" IsHitTestVisible="{Binding AmmoniaFanOff_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding AmmoniaCommandClicked}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+
+                        </Grid>
+                    </dxlc:LayoutGroup>
+
+
+                </dxlc:FlowLayoutControl>
+            </dxc:DXTabItem>
+            <dxc:DXTabItem Header="랙마스터" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                <dxlc:FlowLayoutControl ItemMovingAnimationDuration="0:0:0.1" Background="Gray">
+                    <dxlc:LayoutGroup View="GroupBox" MinWidth="300" VerticalAlignment="Stretch" Orientation="Vertical" Header="위치 이동">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <GroupBox Header="구역 선택" Grid.Row="0">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="1" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Zone1_IsChecked}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="2" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Zone2_IsChecked}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="3" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Zone3_IsChecked}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="4" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Zone4_IsChecked}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="5" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Zone5_IsChecked}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="6" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Zone6_IsChecked}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="7" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Zone7_IsChecked}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="8" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Zone8_IsChecked}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="층 선택" Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="1" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Floor1_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FloorSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="2" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Floor2_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FloorSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="3" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Floor3_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FloorSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="4" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Floor4_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FloorSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="5" MinWidth="50" Margin="3" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Floor5_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FloorSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="열 선택" Grid.Row="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="1" MinWidth="50" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Column1_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ColumnSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="2" MinWidth="50" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Column2_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ColumnSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="3" MinWidth="50" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding Column3_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ColumnSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="프로세스 위치 선택" Grid.Row="3">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxc:SimpleButton Content="로더" MinWidth="50" Margin="2" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding LoaderStation_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding LoaderSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="버퍼" MinWidth="50" Margin="2" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding BufferStation_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding BufferSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="세정" MinWidth="50" Margin="2" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding WashStation_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding WashSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="톱밥털기(정상)" MinWidth="50" Margin="2" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlipFaceUpStation_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipFaceUpSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="톱밥털기(반전)" MinWidth="50" Margin="2" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding FlipFaceDownStation_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipFaceDownSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="톱밥공급" MinWidth="50" Margin="2" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TobbabSupplyStation_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding TobbabSupplySelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="톱밥평탄화" MinWidth="50" Margin="2" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TobbabFlatStation_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding TobbabFlatSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="검사" MinWidth="50" Margin="2" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding VisionStation_IsChecked}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding VisionSelectClickCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="랙마스터" Grid.Row="4">
+                                <StackPanel Orientation="Horizontal">
+                                    <dxe:ToggleSwitch ContentPlacement="both" HorizontalAlignment="Left" CheckedStateContent="PROCESS" UncheckedStateContent="STOCK" IsChecked="{Binding IsProcessSelectedCheck}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Checked" Command="{Binding ProcessCheckedCommand}" PassEventArgsToCommand="False"/>
+                                            <dxmvvm:EventToCommand EventName="Unchecked" Command="{Binding RackCheckedCommand}" PassEventArgsToCommand="False"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxe:ToggleSwitch>
+                                    <dxc:SimpleButton Content="랙 위치 이동" MinWidth="100" Margin="5" ButtonKind="Simple" AsyncDisplayMode="WaitCancel" Command="{Binding AsyncRackMoveCommand}" IsHitTestVisible="{Binding RackMove_IsHit}">
+                                        <!--<dxmvvm:Interaction.Triggers>
+                <dxmvvm:EventToCommand EventName="Click" Command="{Binding RackMoveClickedCommand}" PassEventArgsToCommand="True"/>
+            </dxmvvm:Interaction.Triggers>-->
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="프로세스 위치 이동" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Simple"  IsHitTestVisible="{Binding ProcessMove_IsHit}">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding ProcessMoveClickedCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="로딩" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Simple">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding PickClickedCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                    <dxc:SimpleButton Content="언로딩" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Simple">
+                                        <dxmvvm:Interaction.Triggers>
+                                            <dxmvvm:EventToCommand EventName="Click" Command="{Binding PlaceClickedCommand}" PassEventArgsToCommand="True"/>
+                                        </dxmvvm:Interaction.Triggers>
+                                    </dxc:SimpleButton>
+                                </StackPanel>
+                            </GroupBox>
+
+                        </Grid>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="GroupBox" MinWidth="300" VerticalAlignment="Stretch" Orientation="Vertical" Header="조명 제어">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <dxc:SimpleButton Content="100%" MinWidth="40" Margin="3 0 0 0" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ZoneLed_100_IsChecked}" IsHitTestVisible="{Binding ZoneLed_100_IsHit}">
+                                    <dxmvvm:Interaction.Triggers>
+                                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneLed_100_ClickCommand}" PassEventArgsToCommand="True"/>
+                                    </dxmvvm:Interaction.Triggers>
+                                </dxc:SimpleButton>
+
+                                <dxc:SimpleButton Content="50%" MinWidth="40" Margin="3 0 3 0" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ZoneLed_50_IsChecked}" IsHitTestVisible="{Binding ZoneLed_50_IsHit}">
+                                    <dxmvvm:Interaction.Triggers>
+                                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneLed_50_ClickCommand}" PassEventArgsToCommand="True"/>
+                                    </dxmvvm:Interaction.Triggers>
+                                </dxc:SimpleButton>
+                                <dxc:SimpleButton Content="끄기" MinWidth="40" Margin="0 0 0 0" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding ZoneLed_Off_IsChecked}" IsHitTestVisible="{Binding ZoneLed_Off_IsHit}">
+                                    <dxmvvm:Interaction.Triggers>
+                                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZoneLed_Off_ClickCommand}" PassEventArgsToCommand="True"/>
+                                    </dxmvvm:Interaction.Triggers>
+                                </dxc:SimpleButton>
+                            </StackPanel>
+                        </Grid>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup View="GroupBox" MinWidth="300" VerticalAlignment="Stretch" Orientation="Vertical" Header="실린더제어">
+                        <GroupBox Header="실린더 제어" Grid.Row="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <GroupBox Header="박스 핸드 전후진(Y축)" Grid.Row="0" Grid.Column="0" Margin="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="전진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSHandRight_IsChecked}" IsHitTestVisible="{Binding TRSHandRight_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSHandCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="후진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSHandLeft_IsChecked}" IsHitTestVisible="{Binding TRSHandLeft_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSHandCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="박스 상단 클램프 전후진"  Grid.Row="0" Grid.Column="1" Margin="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="전진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSClampCylinderFwd_IsChecked}" IsHitTestVisible="{Binding TRSClampCylinderFwd_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSClampCylinderFwdBwdCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="후진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSClampCylinderBwd_IsChecked}" IsHitTestVisible="{Binding TRSClampCylinderBwd_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSClampCylinderFwdBwdCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="박스 클램프" Grid.Row="1" Grid.Column="0" Margin="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="위로" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSClampCylinderUp_IsChecked}" IsHitTestVisible="{Binding TRSClampCylinderUp_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSClampCylinderUpDownCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="아래로" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSClampCylinderDown_IsChecked}" IsHitTestVisible="{Binding TRSClampCylinderDown_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSClampCylinderUpDownCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="박스 반전 클램프"  Grid.Row="1" Grid.Column="1" Margin="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="위로" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSFlipClampCylinderUp_IsChecked}" IsHitTestVisible="{Binding TRSFlipClampCylinderUp_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSFlipClampCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="아래로" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSFlipClampCylinderDown_IsChecked}" IsHitTestVisible="{Binding TRSFlipClampCylinderDown_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSFlipClampCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="박스 회전" Grid.Row="2" Grid.Column="0" Margin="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="오른쪽" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSHandTurnRight_IsChecked}" IsHitTestVisible="{Binding TRSHandTurnRight_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSHandTurnCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="왼쪽" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSHandTurnLeft_IsChecked}" IsHitTestVisible="{Binding TRSHandTurnLeft_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSHandTurnCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="박스 가이드"  Grid.Row="2" Grid.Column="1" Margin="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="전진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSBoxGuideFwd_IsChecked}" IsHitTestVisible="{Binding TRSBoxGuideFwd_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSBoxGuideCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="후진" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSBoxGuideBwd_IsChecked}" IsHitTestVisible="{Binding TRSBoxGuideBwd_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSBoxGuideCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="박스 덮개 실린더" Grid.Row="3" Grid.Column="0" Margin="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="위로" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSCoverUp_IsChecked}" IsHitTestVisible="{Binding TRSCoverUp_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSCoverCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="아래로" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSCoverDown_IsChecked}" IsHitTestVisible="{Binding TRSCoverDown_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSCoverCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Header="박스 덮개 Air" Grid.Row="3" Grid.Column="1" Margin="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxc:SimpleButton Content="흡착" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSCoverVacOn_IsChecked}" IsHitTestVisible="{Binding TRSCoverVacOn_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSCoverVacCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                        <dxc:SimpleButton Content="파기" MinWidth="100" Margin="5" Style="{StaticResource ManualButtonStyle}" ButtonKind="Toggle" IsChecked="{Binding TRSCoverVacOff_IsChecked}" IsHitTestVisible="{Binding TRSCoverVacOff_IsHit}">
+                                            <dxmvvm:Interaction.Triggers>
+                                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding TRSCoverVacCommandClicked}" PassEventArgsToCommand="True"/>
+                                            </dxmvvm:Interaction.Triggers>
+                                        </dxc:SimpleButton>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </GroupBox>
+                    </dxlc:LayoutGroup>
+                </dxlc:FlowLayoutControl>
+            </dxc:DXTabItem>
+        </dxc:DXTabControl>
+
+    </Grid>
+</UserControl>

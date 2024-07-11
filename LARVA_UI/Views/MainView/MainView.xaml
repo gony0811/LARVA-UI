@@ -1,0 +1,94 @@
+﻿<dxwui:NavigationPage  
+    xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+    x:Class="LARVA_UI.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+    xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+    xmlns:ViewModels="clr-namespace:LARVA_UI.ViewModels"
+    mc:Ignorable="d" d:DesignHeight="1000" d:DesignWidth="1920">
+    <dxwui:NavigationPage.DataContext>
+        <ViewModels:MainViewModel/>
+    </dxwui:NavigationPage.DataContext>  
+    <Grid>
+        <!--
+        <Grid.DataContext>
+            <ViewModels:MainViewModel/>
+        </Grid.DataContext>
+    -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <lc:TileLayoutControl Margin="5" Grid.Column="0">
+
+            <lc:TileLayoutControl.Background>
+                <ImageBrush ImageSource="pack://application:,,,/Resources/DashboardBackground.jpg" Stretch="UniformToFill" />
+            </lc:TileLayoutControl.Background>
+            <lc:Tile Size="ExtraLarge" Header="자동" FontSize="24" Background="#FF54AF0E"  dxwuin:Navigation.NavigateTo="AutoView" Visibility="{Binding AutoViewVisibility}">
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/Dashboards/AutoArrange.svg" Width="100" Height="100"/>
+                <!--<TextBlock Text="Auto" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+            </lc:Tile>
+            <lc:Tile Size="Large" Header="설정" FontSize="24" Background="#FF54AF0E"  dxwuin:Navigation.NavigateTo="SettingsView" Visibility="{Binding SettingsViewVisibility}">
+                <!--<TextBlock Text="Settings" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/XAF/ModelEditor_Application.svg" Width="100" Height="100"/>
+            </lc:Tile>
+            <lc:Tile Size="Large" dxwuin:Navigation.NavigateTo="IoMonitoringView"  Header="I/O" FontSize="24" Background="#FF54AF0E" Visibility="{Binding IoMonitoringViewVisibility}">
+               <!--<TextBlock Text="I/O Monitor" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/Outlook Inspired/ReversSort.svg" Width="100" Height="100"/>
+            </lc:Tile>
+            <lc:Tile Size="ExtraLarge"  Header="수동" FontSize="24" Background="#FF54AF0E" dxwuin:Navigation.NavigateTo="ManualView" Visibility="{Binding ManualViewVisibility}">
+                <!--<TextBlock Text="Manual" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/Setup/PageSetup.svg" Width="100" Height="100"/>
+            </lc:Tile>
+
+
+            <lc:Tile Size="ExtraLarge" dxwuin:Navigation.NavigateTo="ServoControlView"  Visibility="Hidden">
+                <TextBlock Text="Servo" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </lc:Tile>
+
+            <lc:Tile Size="Large"  Header="알람" FontSize="24" Background="#FF54AF0E" dxwuin:Navigation.NavigateTo="AlarmView">
+                <!--<TextBlock Text="Alarm" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/XAF/State_Validation_Warning.svg" Width="100" Height="100"/>
+            </lc:Tile>
+
+            <lc:Tile Size="Large" Header="경고음" FontSize="24" Background="#FF54AF0E" Visibility="{Binding BuzzerOffVisibility}">
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/XAF/Action_Bell.svg" Width="50" Height="50"/>
+                <!--<TextBlock Text="Buzzer OFF" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                <dxmvvm:Interaction.Triggers>
+                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding BuzzerOffTouchDownCommand}" PassEventArgsToCommand="True"/>
+                    <dxmvvm:EventToCommand EventName="PreviewTouchUp" Command="{Binding BuzzerOffTouchUpCommand}" PassEventArgsToCommand="True"/>
+                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding BuzzerOffCommand}" PassEventArgsToCommand="True"/>
+                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonUp" Command="{Binding BuzzerOffCommand}" PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Triggers>
+            </lc:Tile>
+            <lc:Tile Size="Large"  Header="알람해제" FontSize="24" Background="#FF54AF0E" Visibility="{Binding AlarmResetVisibility}">
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/Outlook Inspired/PaymentRefund.svg" Width="50" Height="50"/>
+                <!--<TextBlock Text="Alarm Reset" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                <dxmvvm:Interaction.Triggers>
+                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding AlarmResetTouchDownCommand}" PassEventArgsToCommand="True"/>
+                    <dxmvvm:EventToCommand EventName="PreviewTouchUp" Command="{Binding AlarmResetTouchUpCommand}" PassEventArgsToCommand="True"/>
+                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonUp" Command="{Binding AlarmResetCommand}" PassEventArgsToCommand="True"/>
+                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding AlarmResetCommand}" PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Triggers>
+            </lc:Tile>
+            <lc:Tile Size="Large" Header="모드변경" FontSize="24" Background="#FF54AF0E">
+                <!--<TextBlock Text="{Binding ModeTxt}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/XAF/ModelEditor_Actions_ActionDesign.svg" Width="50" Height="50"/>
+                <dxmvvm:Interaction.Triggers>
+                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding ModeChangeCommand}" PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Triggers>
+            </lc:Tile>
+            <lc:Tile Size="Large" Header="{Binding DoorText}" FontSize="24" Background="#FF54AF0E">
+                <dxc:DXImage Source="pack://application:,,,/DevExpress.Images.v23.1;component/SvgImages/Icon Builder/Security_Key.svg" Width="50" Height="50"/>
+                <!--<TextBlock Text="{Binding DoorText}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                <dxmvvm:Interaction.Triggers>
+                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding DoorOpenCommand}" PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Triggers>
+            </lc:Tile>
+        </lc:TileLayoutControl>
+    </Grid>
+</dxwui:NavigationPage>

@@ -1,0 +1,677 @@
+﻿<UserControl x:Class="LARVA_UI.Views.ParameterSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+             xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:ViewModels="clr-namespace:LARVA_UI.ViewModels"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:ParameterSettingViewModel}"
+             d:DesignHeight="980" d:DesignWidth="1700" dxc:ThemeManager.ThemeName="Office2019White;Touch">
+
+
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="BoldFontLabelStyle" TargetType="dxlc:LayoutItemLabel">
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <dxlc:LayoutControl Grid.Row="0" Orientation="Vertical" StretchContentVertically="False" Background="Transparent">
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutGroup.GroupBoxStyle>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="TitleVisibility" Value="Collapsed" />
+                    </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>
+                <TextBlock Name="textBlock2"  Text="설정" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="26">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF31B5F0" Offset="0" />
+                            <GradientStop Color="#FF31B5F0" Offset="1" />
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                <TextBlock HorizontalAlignment="Center" Name="textBlock1" Text="굼벵이 사육 파라미터 설정" VerticalAlignment="Center" FontSize="26" />
+            </dxlc:LayoutGroup>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <dxlc:LayoutGroup Header="톱밥 공급부 파라미터 설정" Grid.Column="0" Grid.Row="0"
+                        View="GroupBox"
+                        Orientation="Vertical"
+                        ItemLabelsAlignment="Local" Margin="5 5 0 150">
+                    <dxlc:LayoutItem Label="톱밥 공급 무게 (Kg) :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding TobbabSupplyWeight}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding TobbabSupplyWeightClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding TobbabSupplyWeightClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding TobbabSupplyWeightSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="톱밥 공급 타임아웃 (초) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding TobbabSupplyTimeout}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding TobbabSupplyTimeoutClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding TobbabSupplyTimeoutClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding TobbabSupplyTimeoutSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="수분 공급 시간 (초) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding MistSupplyDuration}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding MistSupplyDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding MistSupplyDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding MistSupplyDurationSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="톱밥 평탄화 시간 (초) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding FlatDuration}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlatDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlatDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlatDurationSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="톱밥 배출부 파라미터 설정"  Grid.Column="0" View="GroupBox" Orientation="Vertical" ItemLabelsAlignment="Local" Margin="5,270,0,0" Grid.RowSpan="2">
+                    <dxlc:LayoutItem Label="박스 타격 시간 (초) :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding FlipImpactDuration}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipImpactDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipImpactDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipImpactDurationSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="박스 스윙 시간 (초) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding FlipSwingDuration}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipSwingDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipSwingDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipSwingDurationSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="톱밥 배출 시간 (초) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding FlipOutConveyorDuration}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipOutConveyorDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipOutConveyorDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipOutConveyorDurationSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="SWING LIMIT + (도) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding FlipLimitPlus}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipLimitPlusClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipLimitPlusClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipLimitPlusSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="SWING LIMIT - (도) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding FlipLimitMinus}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipLimitMinusClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipLimitMinusClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipLimitMinusSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Box FaceUP 위치 (도) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding BoxFaceUpAngle}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding BoxFaceUpAngleClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding BoxFaceUpAngleClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxFaceUpClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Box FaceDown 위치 (도) : " IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:TextEdit MinWidth="150" EditValue="{Binding BoxFaceDownAngle}" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding BoxFaceDownAngleClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding BoxFaceDownAngleClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:TextEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxFaceDownClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="박스 세정부 파라미터 설정"  Grid.Column="1" Grid.Row="0" View="GroupBox" Orientation="Vertical" ItemLabelsAlignment="Local" Margin="5 5 0 150">
+                    <dxlc:LayoutItem Label="박스 세정 시간 (초) :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding WashingDurationTime}" ShowEditorButtons="False"  MaxValue="255" MinValue="1" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding WashingDurationTimeClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding WashingDurationTimeClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding WashingDurationTimeSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="박스 건조 시간 (초) :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding BlowDuration}" ShowEditorButtons="False"  MaxValue="255" MinValue="1" DisplayFormatString="D" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding BlowDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding BlowDurationClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding BlowDurationSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="항온항습 파라미터 설정"  Grid.Column="1" View="GroupBox" Orientation="Vertical" ItemLabelsAlignment="Local" Margin="5,270,0,0" Grid.RowSpan="2">
+                    <dxlc:LayoutItem Label="설정 온도 (도) :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding HvacTargetTemperature}" ShowEditorButtons="False"  MaxValue="60" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding HvacTargetTemperatureClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding HvacTargetTemperatureClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding HvacTargetTemperatureSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="설정 습도 (%) :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding HvacTargetHumidity}" ShowEditorButtons="False"  MaxValue="100" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding HvacTargetHumidityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding HvacTargetHumidityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding HvacTargetHumiditySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="모션 파라미터 설정(1)"  Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" View="GroupBox" Orientation="Vertical" ItemLabelsAlignment="Local" Margin="5,5,0,0">
+
+                    <dxlc:LayoutItem Label="X축 이동 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding XAxisMoveVelocity}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding XAxisMoveVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding XAxisMoveVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding XAxisMoveVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="X축 JOG FAST 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding XAxisJogFastVelocity}" ShowEditorButtons="False" MaxValue="500.00" MinValue="0.00" DisplayFormatString="F2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding XAxisJogFastVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding XAxisJogFastVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding XAxisJogFastVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="X축 JOG SLOW 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding XAxisJogSlowVelocity}" ShowEditorButtons="False"  MaxValue="500.0" MinValue="0.00" DisplayFormatString="F2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding XAxisJogSlowVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding XAxisJogSlowVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding XAxisJogSlowVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Y축 이동 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding YAxisMoveVelocity}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding YAxisMoveVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding YAxisMoveVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding YAxisMoveVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Y축 JOG FAST 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding YAxisJogFastVelocity}" ShowEditorButtons="False"  MaxValue="200.00" MinValue="0.00" DisplayFormatString="F2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding YAxisJogFastVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding YAxisJogFastVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding YAxisJogFastVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Y축 JOG SLOW 속도 :" IsRequired="True" >
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding YAxisJogSlowVelocity}" ShowEditorButtons="False"  MaxValue="200.00" MinValue="0.00" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding YAxisJogSlowVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding YAxisJogSlowVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding YAxisJogSlowVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Z축 이동 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding ZAxisMoveVelocity}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding ZAxisMoveVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding ZAxisMoveVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZAxisMoveVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Z축 JOG FAST 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding ZAxisJogFastVelocity}" ShowEditorButtons="False"  MaxValue="200.00" MinValue="0.00" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding ZAxisJogFastVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding ZAxisJogFastVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZAxisJogFastVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Z축 JOG SLOW 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding ZAxisJogSlowVelocity}" ShowEditorButtons="False"  MaxValue="200.00" MinValue="0.00" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding ZAxisJogSlowVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding ZAxisJogSlowVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZAxisJogSlowVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="FLIP축 이동 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding FlipAxisMoveVelocity}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipAxisMoveVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipAxisMoveVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipAxisMoveVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="FLIP축 JOG FAST 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding FlipAxisJogFastVelocity}" ShowEditorButtons="False"  MaxValue="50.00" MinValue="0.00" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipAxisJogFastVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipAxisJogFastVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipAxisJogFastVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="FLIP축 JOG SLOW 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding FlipAxisJogSlowVelocity}" ShowEditorButtons="False"  MaxValue="50.00" MinValue="0.00" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipAxisJogSlowVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipAxisJogSlowVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipAxisJogSlowVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutGroup Header="모션 파라미터 설정(2)"  Grid.Column="3" Grid.Row="0" Grid.RowSpan="1" View="GroupBox" Orientation="Vertical" ItemLabelsAlignment="Local" Margin="5,5,0,0">
+                    <!--홈 속도 추가_mh.yun_240627-->
+                    <dxlc:LayoutItem Label="X축 홈 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding XAxisHomeVelocity}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding XAxisHomeVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding XAxisHomeVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding XAxisHomeVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>                   
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Y축 홈 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding YAxisHomeVelocity}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding YAxisHomeVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding YAxisHomeVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding YAxisHomeVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Z축 홈 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding ZAxisHomeVelocity}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding ZAxisHomeVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding ZAxisHomeVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZAxisHomeVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="FLIP축 홈 속도 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding FlipAxisHomeVelocity}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding FlipAxisHomeVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding FlipAxisHomeVelocityClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding FlipAxisHomeVelocitySetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+
+                    <!--대기위치 추가_mh.yun_240226-->
+                    <dxlc:LayoutItem Label="X축 대기 위치 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding XAxisStandbyPosition}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding XAxisStandbyPositionClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding XAxisStandbyPositionClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding XAxisStandbyPositionSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Y축 대기 위치 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding YAxisStandbyPosition}" ShowEditorButtons="False"  MaxValue="500" MinValue="-100" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding YAxisStandbyPositionClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding YAxisStandbyPositionClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding YAxisStandbyPositionSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Z축 대기 위치 :" IsRequired="True">
+                        <dxlc:FlowLayoutControl Orientation="Horizontal" ItemSpace="15" Padding="0">
+                            <dxe:SpinEdit MinWidth="150" EditValue="{Binding ZAxisStandbyPosition}" ShowEditorButtons="False"  MaxValue="500" MinValue="0" DisplayFormatString="N2" IsReadOnly="False" Focusable="False" HorizontalContentAlignment="Center">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="PreviewMouseLeftButtonDown" Command="{Binding ZAxisStandbyPositionClickCommand}" PassEventArgsToCommand="True"/>
+                                    <dxmvvm:EventToCommand EventName="PreviewTouchDown" Command="{Binding ZAxisStandbyPositionClickCommand}" PassEventArgsToCommand="True"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxe:SpinEdit>
+                            <dxc:SimpleButton Content="설정" MinWidth="50" Margin="1 0 1 0">
+                                <dxmvvm:Interaction.Triggers>
+                                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding ZAxisStandbyPositionSetClickCommand}" PassEventArgsToCommand="False"/>
+                                </dxmvvm:Interaction.Triggers>
+                            </dxc:SimpleButton>
+                        </dxlc:FlowLayoutControl>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutGroup Header="인터락 설정"  Grid.Column="3" Grid.Row="1" Grid.RowSpan="1" View="GroupBox" Orientation="Vertical" ItemLabelsAlignment="Local" Margin="5,5,0,0">
+                    
+                    <dxlc:LayoutItem Label="X축 인터락 :" IsRequired="True">
+                        <dxe:ToggleSwitch ContentPlacement="both" HorizontalAlignment="Left" CheckedStateContent="ON" UncheckedStateContent="OFF" IsChecked="{Binding IsXAxisInterlockStatus}">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Checked" Command="{Binding XAxisInterlockOnCheckedCommand}" PassEventArgsToCommand="False"/>
+                                <dxmvvm:EventToCommand EventName="Unchecked" Command="{Binding XAxisInterlockOffCheckedCommand}" PassEventArgsToCommand="False"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxe:ToggleSwitch>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Y축 인터락 :" IsRequired="True" >
+                        <dxe:ToggleSwitch ContentPlacement="both" HorizontalAlignment="Left" CheckedStateContent="ON" UncheckedStateContent="OFF" IsChecked="{Binding IsYAxisInterlockStatus}">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Checked" Command="{Binding YAxisInterlockOnCheckedCommand}" PassEventArgsToCommand="False"/>
+                                <dxmvvm:EventToCommand EventName="Unchecked" Command="{Binding YAxisInterlockOffCheckedCommand}" PassEventArgsToCommand="False"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxe:ToggleSwitch>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Z축 인터락 :" IsRequired="True" >
+                        <dxe:ToggleSwitch ContentPlacement="both" HorizontalAlignment="Left" CheckedStateContent="ON" UncheckedStateContent="OFF" IsChecked="{Binding IsZAxisInterlockStatus}">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Checked" Command="{Binding ZAxisInterlockOnCheckedCommand}" PassEventArgsToCommand="False"/>
+                                <dxmvvm:EventToCommand EventName="Unchecked" Command="{Binding ZAxisInterlockOffCheckedCommand}" PassEventArgsToCommand="False"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxe:ToggleSwitch>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Flip축 인터락 :" IsRequired="True" >
+                        <dxe:ToggleSwitch ContentPlacement="both" HorizontalAlignment="Left" CheckedStateContent="ON" UncheckedStateContent="OFF" IsChecked="{Binding IsFlipAxisInterlockStatus}">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Checked" Command="{Binding FlipAxisInterlockOnCheckedCommand}" PassEventArgsToCommand="False"/>
+                                <dxmvvm:EventToCommand EventName="Unchecked" Command="{Binding FlipAxisInterlockOffCheckedCommand}" PassEventArgsToCommand="False"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxe:ToggleSwitch>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Turn축 인터락 :" IsRequired="True" >
+                        <dxe:ToggleSwitch ContentPlacement="both" HorizontalAlignment="Left" CheckedStateContent="ON" UncheckedStateContent="OFF" IsChecked="{Binding IsTurnAxisInterlockStatus}">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Checked" Command="{Binding TurnAxisInterlockOnCheckedCommand}" PassEventArgsToCommand="False"/>
+                                <dxmvvm:EventToCommand EventName="Unchecked" Command="{Binding TurnAxisInterlockOffCheckedCommand}" PassEventArgsToCommand="False"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxe:ToggleSwitch>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="전체 인터락 :" IsRequired="True" >
+                        <dxe:ToggleSwitch ContentPlacement="both" HorizontalAlignment="Left" CheckedStateContent="ON" UncheckedStateContent="OFF" IsChecked="{Binding IsAllInterlockStatus}">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Checked" Command="{Binding AllInterlockOnCheckedCommand}" PassEventArgsToCommand="False"/>
+                                <dxmvvm:EventToCommand EventName="Unchecked" Command="{Binding AllInterlockOffCheckedCommand}" PassEventArgsToCommand="False"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxe:ToggleSwitch>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+
+            </Grid>
+
+        </dxlc:LayoutControl>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="LARVA_UI.Views.AlarmHistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+             xmlns:lc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+             xmlns:dxrudex="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesignerextensions"
+             xmlns:ViewModels="clr-namespace:LARVA_UI.ViewModels"
+             xmlns:local="clr-namespace:LARVA_UI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" dxc:ThemeManager.ThemeName="Office2019White;Touch">
+    <Grid>
+        <Grid.DataContext>
+            <ViewModels:AlarmHistroryViewModel/>
+        </Grid.DataContext>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition MaxHeight="800"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <dxe:DateEdit Mask="g" MaskUseAsDisplayFormat="True" EditValue="{Binding StartDateTime}">
+                <dxmvvm:Interaction.Triggers>
+                    <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding StartEditValueChangedCommand}" PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Triggers>
+                    
+                <dxe:DateEdit.StyleSettings>
+                    <dxe:DateEditNavigatorWithTimePickerStyleSettings />
+                </dxe:DateEdit.StyleSettings>
+            </dxe:DateEdit>
+            <Label Content="~"/>
+            <dxe:DateEdit Mask="g" MaskUseAsDisplayFormat="True" EditValue="{Binding EndDateTime}">
+                <dxmvvm:Interaction.Triggers>
+                    <dxmvvm:EventToCommand EventName="EditValueChanged" Command="{Binding EndEditValueChangedCommand}" PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Triggers>
+
+                <dxe:DateEdit.StyleSettings>
+                    <dxe:DateEditNavigatorWithTimePickerStyleSettings />
+                </dxe:DateEdit.StyleSettings>
+            </dxe:DateEdit>
+            <dxc:SimpleButton Content="Search" Margin="3,0,0,0">
+                <dxmvvm:Interaction.Triggers>
+                    <dxmvvm:EventToCommand EventName="Click" Command="{Binding SearchAlarmHistoryCommand}" PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Triggers>
+            </dxc:SimpleButton>
+        </StackPanel>
+        
+        <DockPanel Grid.Row="1">
+            <dxg:GridControl AutoExpandAllGroups="True" ItemsSource="{Binding AlarmHistoryList}" AllowColumnMRUFilterList="False" dx:ScrollBarExtensions.ScrollBarMode="TouchOverlap" MinHeight="10"  BorderBrush="DarkGray" ShowBorder="False">
+                <dxg:GridControl.Columns>
+
+                    <dxg:GridColumn FieldName="ALARM CODE"
+                                Width="2*"
+                                UnboundDataType="{x:Type sys:String}"
+                                UnboundExpression="[ID]"
+                                ReadOnly="True"
+                                />
+                    <dxg:GridColumn FieldName="ALARM LEVEL"
+                                Width="2*"
+                                HorizontalHeaderContentAlignment="Center"
+                                UnboundDataType="{x:Type sys:String}"
+                                UnboundExpression="[LEVEL]"
+                                ReadOnly="True"
+                                />
+                    <dxg:GridColumn FieldName="NAME"
+                                Width="5*"
+                                HorizontalHeaderContentAlignment="Center"
+                                UnboundDataType="{x:Type sys:String}"
+                                UnboundExpression="[TEXT]"
+                                ReadOnly="True"
+                                />
+                    <dxg:GridColumn FieldName="STATUS"
+                                Width="2*"
+                                HorizontalHeaderContentAlignment="Center"
+                                UnboundDataType="{x:Type sys:String}"
+                                UnboundExpression="[STATUS]"
+                                ReadOnly="True"
+                                />
+                    <dxg:GridColumn FieldName="DESCRIPTION"
+                                Width="10*"
+                                HorizontalHeaderContentAlignment="Center"    
+                                UnboundDataType="{x:Type sys:String}"
+                                UnboundExpression="[DESCRIPTION]"
+                                ReadOnly="True"
+                                />
+                    <dxg:GridColumn FieldName="UPDATE TIME"
+                                Width="3*"
+                                HorizontalHeaderContentAlignment="Center"    
+                                UnboundDataType="{x:Type sys:String}"
+                                UnboundExpression="[UPDATETIME]"
+                                ReadOnly="True"
+                                >
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+
+                <dxg:GridControl.TotalSummary>
+                    <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+                </dxg:GridControl.TotalSummary>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowFixedTotalSummary="False"
+                               AllowScrollAnimation="True"
+                               Name="view"
+                               AllowFixedGroups="False"
+                               NavigationStyle="Row"
+                               AllowPrintColumnHeaderImage="False"
+                               HighlightItemOnHover="False">
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </DockPanel>
+<!--
+        <lc:LayoutControl Grid.Row="1" Padding="0">
+            <lc:LayoutGroup Orientation="Vertical" MaxHeight="800">
+                <DataGrid Margin="0,3" ItemsSource="{Binding AlarmHistoryList}" Height="Auto" MinHeight="20" HeadersVisibility="Column" GridLinesVisibility="All"  BorderBrush="DarkGray" BorderThickness="1" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True" CanUserSortColumns="False" AutoGenerateColumns="True">
+                </DataGrid>
+            </lc:LayoutGroup>
+        </lc:LayoutControl>
+-->
+    </Grid>
+</UserControl>

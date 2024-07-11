@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Plc AmsNetId="5.131.249.183.1.1" AmsPort="851">
+  <PlcVar Name="GV_PIO.GV_DIGITAL_IN" BufferType="BYTE" BufferSize="30" DataType="BOOL" Count="240" Tag="DIAGNOSTIC_DI" Index="0">
+    <Param Name="SHELF ZONE A 1-1-1" Offset="0"/>
+    <Param Name="SHELF ZONE A 1-1-2" Offset="1"/>
+    <Param Name="SHELF ZONE A 1-2-1" Offset="2"/>
+    <Param Name="SHELF ZONE A 1-2-2" Offset="3"/>
+    <Param Name="SHELF ZONE A 1-3-1" Offset="4"/>
+    <Param Name="SHELF ZONE A 1-3-2" Offset="5"/>
+    <Param Name="SHELF ZONE A 2-1-1" Offset="6"/>
+    <Param Name="SHELF ZONE A 2-1-2" Offset="7"/>
+    <Param Name="SHELF ZONE A 2-2-1" Offset="8"/>
+    <Param Name="SHELF ZONE A 2-2-2" Offset="9"/>
+    <Param Name="SHELF ZONE A 2-3-1" Offset="10"/>
+    <Param Name="SHELF ZONE A 2-3-2" Offset="11"/>
+    <Param Name="SHELF ZONE A 3-1-1" Offset="12"/>
+    <Param Name="SHELF ZONE A 3-1-2" Offset="13"/>
+    <Param Name="SHELF ZONE A 3-2-1" Offset="14"/>
+    <Param Name="SHELF ZONE A 3-2-2" Offset="15"/>
+    <Param Name="SHELF ZONE A 3-3-1" Offset="16"/>
+    <Param Name="SHELF ZONE A 3-3-2" Offset="17"/>
+    <Param Name="SHELF ZONE A 4-1-1" Offset="18"/>
+    <Param Name="SHELF ZONE A 4-1-2" Offset="19"/>
+    <Param Name="SHELF ZONE A 4-2-1" Offset="20"/>
+    <Param Name="SHELF ZONE A 4-2-2" Offset="21"/>
+    <Param Name="SHELF ZONE A 4-3-1" Offset="22"/>
+    <Param Name="SHELF ZONE A 4-3-2" Offset="23"/>
+    <Param Name="SHELF ZONE A 5-1-1" Offset="24"/>
+    <Param Name="SHELF ZONE A 5-1-2" Offset="25"/>
+    <Param Name="SHELF ZONE A 5-2-1" Offset="26"/>
+    <Param Name="SHELF ZONE A 5-2-2" Offset="27"/>
+    <Param Name="SHELF ZONE A 5-3-1" Offset="28"/>
+    <Param Name="SHELF ZONE A 5-3-2" Offset="29"/>
+
+    <Param Name="SHELF ZONE B 1-1-1" Offset="30"/>
+    <Param Name="SHELF ZONE B 1-1-2" Offset="31"/>
+    <Param Name="SHELF ZONE B 1-2-1" Offset="32"/>
+    <Param Name="SHELF ZONE B 1-2-2" Offset="33"/>
+    <Param Name="SHELF ZONE B 1-3-1" Offset="34"/>
+    <Param Name="SHELF ZONE B 1-3-2" Offset="35"/>
+    <Param Name="SHELF ZONE B 2-1-1" Offset="36"/>
+    <Param Name="SHELF ZONE B 2-1-2" Offset="37"/>
+    <Param Name="SHELF ZONE B 2-2-1" Offset="38"/>
+    <Param Name="SHELF ZONE B 2-2-2" Offset="39"/>
+    <Param Name="SHELF ZONE B 2-3-1" Offset="40"/>
+    <Param Name="SHELF ZONE B 2-3-2" Offset="41"/>
+    <Param Name="SHELF ZONE B 3-1-1" Offset="42"/>
+    <Param Name="SHELF ZONE B 3-1-2" Offset="43"/>
+    <Param Name="SHELF ZONE B 3-2-1" Offset="44"/>
+    <Param Name="SHELF ZONE B 3-2-2" Offset="45"/>
+    <Param Name="SHELF ZONE B 3-3-1" Offset="46"/>
+    <Param Name="SHELF ZONE B 3-3-2" Offset="47"/>
+    <Param Name="SHELF ZONE B 4-1-1" Offset="48"/>
+    <Param Name="SHELF ZONE B 4-1-2" Offset="49"/>
+    <Param Name="SHELF ZONE B 4-2-1" Offset="50"/>
+    <Param Name="SHELF ZONE B 4-2-2" Offset="51"/>
+    <Param Name="SHELF ZONE B 4-3-1" Offset="52"/>
+    <Param Name="SHELF ZONE B 4-3-2" Offset="53"/>
+    <Param Name="SHELF ZONE B 5-1-1" Offset="54"/>
+    <Param Name="SHELF ZONE B 5-1-2" Offset="55"/>
+    <Param Name="SHELF ZONE B 5-2-1" Offset="56"/>
+    <Param Name="SHELF ZONE B 5-2-2" Offset="57"/>
+    <Param Name="SHELF ZONE B 5-3-1" Offset="58"/>
+    <Param Name="SHELF ZONE B 5-3-2" Offset="59"/>
+
+    <Param Name="SHELF ZONE C 1-1-1" Offset="60"/>
+    <Param Name="SHELF ZONE C 1-1-2" Offset="61"/>
+    <Param Name="SHELF ZONE C 1-2-1" Offset="62"/>
+    <Param Name="SHELF ZONE C 1-2-2" Offset="63"/>
+    <Param Name="SHELF ZONE C 1-3-1" Offset="64"/>
+    <Param Name="SHELF ZONE C 1-3-2" Offset="65"/>
+    <Param Name="SHELF ZONE C 2-1-1" Offset="66"/>
+    <Param Name="SHELF ZONE C 2-1-2" Offset="67"/>
+    <Param Name="SHELF ZONE C 2-2-1" Offset="68"/>
+    <Param Name="SHELF ZONE C 2-2-2" Offset="69"/>
+    <Param Name="SHELF ZONE C 2-3-1" Offset="70"/>
+    <Param Name="SHELF ZONE C 2-3-2" Offset="71"/>
+    <Param Name="SHELF ZONE C 3-1-1" Offset="72"/>
+    <Param Name="SHELF ZONE C 3-1-2" Offset="73"/>
+    <Param Name="SHELF ZONE C 3-2-1" Offset="74"/>
+    <Param Name="SHELF ZONE C 3-2-2" Offset="75"/>
+    <Param Name="SHELF ZONE C 3-3-1" Offset="76"/>
+    <Param Name="SHELF ZONE C 3-3-2" Offset="77"/>
+    <Param Name="SHELF ZONE C 4-1-1" Offset="78"/>
+    <Param Name="SHELF ZONE C 4-1-2" Offset="79"/>
+    <Param Name="SHELF ZONE C 4-2-1" Offset="80"/>
+    <Param Name="SHELF ZONE C 4-2-2" Offset="81"/>
+    <Param Name="SHELF ZONE C 4-3-1" Offset="82"/>
+    <Param Name="SHELF ZONE C 4-3-2" Offset="83"/>
+    <Param Name="SHELF ZONE C 5-1-1" Offset="84"/>
+    <Param Name="SHELF ZONE C 5-1-2" Offset="85"/>
+    <Param Name="SHELF ZONE C 5-2-1" Offset="86"/>
+    <Param Name="SHELF ZONE C 5-2-2" Offset="87"/>
+    <Param Name="SHELF ZONE C 5-3-1" Offset="88"/>
+    <Param Name="SHELF ZONE C 5-3-2" Offset="89"/>
+
+    <Param Name="SHELF ZONE D 1-1-1" Offset="90"/>
+    <Param Name="SHELF ZONE D 1-1-2" Offset="91"/>
+    <Param Name="SHELF ZONE D 1-2-1" Offset="92"/>
+    <Param Name="SHELF ZONE D 1-2-2" Offset="93"/>
+    <Param Name="SHELF ZONE D 1-3-1" Offset="94"/>
+    <Param Name="SHELF ZONE D 1-3-2" Offset="95"/>
+    <Param Name="SHELF ZONE D 2-1-1" Offset="96"/>
+    <Param Name="SHELF ZONE D 2-1-2" Offset="97"/>
+    <Param Name="SHELF ZONE D 2-2-1" Offset="98"/>
+    <Param Name="SHELF ZONE D 2-2-2" Offset="99"/>
+    <Param Name="SHELF ZONE D 2-3-1" Offset="100"/>
+    <Param Name="SHELF ZONE D 2-3-2" Offset="101"/>
+    <Param Name="SHELF ZONE D 3-1-1" Offset="102"/>
+    <Param Name="SHELF ZONE D 3-1-2" Offset="103"/>
+    <Param Name="SHELF ZONE D 3-2-1" Offset="104"/>
+    <Param Name="SHELF ZONE D 3-2-2" Offset="105"/>
+    <Param Name="SHELF ZONE D 3-3-1" Offset="106"/>
+    <Param Name="SHELF ZONE D 3-3-2" Offset="107"/>
+    <Param Name="SHELF ZONE D 4-1-1" Offset="108"/>
+    <Param Name="SHELF ZONE D 4-1-2" Offset="109"/>
+    <Param Name="SHELF ZONE D 4-2-1" Offset="110"/>
+    <Param Name="SHELF ZONE D 4-2-2" Offset="111"/>
+    <Param Name="SHELF ZONE D 4-3-1" Offset="112"/>
+    <Param Name="SHELF ZONE D 4-3-2" Offset="113"/>
+    <Param Name="SHELF ZONE D 5-1-1" Offset="114"/>
+    <Param Name="SHELF ZONE D 5-1-2" Offset="115"/>
+    <Param Name="SHELF ZONE D 5-2-1" Offset="116"/>
+    <Param Name="SHELF ZONE D 5-2-2" Offset="117"/>
+    <Param Name="SHELF ZONE D 5-3-1" Offset="118"/>
+    <Param Name="SHELF ZONE D 5-3-2" Offset="119"/>
+                            
+    <Param Name="SHELF ZONE E 1-1-1" Offset="120"/>
+    <Param Name="SHELF ZONE E 1-1-2" Offset="121"/>
+    <Param Name="SHELF ZONE E 1-2-1" Offset="122"/>
+    <Param Name="SHELF ZONE E 1-2-2" Offset="123"/>
+    <Param Name="SHELF ZONE E 1-3-1" Offset="124"/>
+    <Param Name="SHELF ZONE E 1-3-2" Offset="125"/>
+    <Param Name="SHELF ZONE E 2-1-1" Offset="126"/>
+    <Param Name="SHELF ZONE E 2-1-2" Offset="127"/>
+    <Param Name="SHELF ZONE E 2-2-1" Offset="128"/>
+    <Param Name="SHELF ZONE E 2-2-2" Offset="129"/>
+    <Param Name="SHELF ZONE E 2-3-1" Offset="130"/>
+    <Param Name="SHELF ZONE E 2-3-2" Offset="131"/>
+    <Param Name="SHELF ZONE E 3-1-1" Offset="132"/>
+    <Param Name="SHELF ZONE E 3-1-2" Offset="133"/>
+    <Param Name="SHELF ZONE E 3-2-1" Offset="134"/>
+    <Param Name="SHELF ZONE E 3-2-2" Offset="135"/>
+    <Param Name="SHELF ZONE E 3-3-1" Offset="136"/>
+    <Param Name="SHELF ZONE E 3-3-2" Offset="137"/>
+    <Param Name="SHELF ZONE E 4-1-1" Offset="138"/>
+    <Param Name="SHELF ZONE E 4-1-2" Offset="139"/>
+    <Param Name="SHELF ZONE E 4-2-1" Offset="140"/>
+    <Param Name="SHELF ZONE E 4-2-2" Offset="141"/>
+    <Param Name="SHELF ZONE E 4-3-1" Offset="142"/>
+    <Param Name="SHELF ZONE E 4-3-2" Offset="143"/>
+    <Param Name="SHELF ZONE E 5-1-1" Offset="144"/>
+    <Param Name="SHELF ZONE E 5-1-2" Offset="145"/>
+    <Param Name="SHELF ZONE E 5-2-1" Offset="146"/>
+    <Param Name="SHELF ZONE E 5-2-2" Offset="147"/>
+    <Param Name="SHELF ZONE E 5-3-1" Offset="148"/>
+    <Param Name="SHELF ZONE E 5-3-2" Offset="149"/>
+                            
+    <Param Name="SHELF ZONE F 1-1-1" Offset="150"/>
+    <Param Name="SHELF ZONE F 1-1-2" Offset="151"/>
+    <Param Name="SHELF ZONE F 1-2-1" Offset="152"/>
+    <Param Name="SHELF ZONE F 1-2-2" Offset="153"/>
+    <Param Name="SHELF ZONE F 1-3-1" Offset="154"/>
+    <Param Name="SHELF ZONE F 1-3-2" Offset="155"/>
+    <Param Name="SHELF ZONE F 2-1-1" Offset="156"/>
+    <Param Name="SHELF ZONE F 2-1-2" Offset="157"/>
+    <Param Name="SHELF ZONE F 2-2-1" Offset="158"/>
+    <Param Name="SHELF ZONE F 2-2-2" Offset="159"/>
+    <Param Name="SHELF ZONE F 2-3-1" Offset="160"/>
+    <Param Name="SHELF ZONE F 2-3-2" Offset="161"/>
+    <Param Name="SHELF ZONE F 3-1-1" Offset="162"/>
+    <Param Name="SHELF ZONE F 3-1-2" Offset="163"/>
+    <Param Name="SHELF ZONE F 3-2-1" Offset="164"/>
+    <Param Name="SHELF ZONE F 3-2-2" Offset="165"/>
+    <Param Name="SHELF ZONE F 3-3-1" Offset="166"/>
+    <Param Name="SHELF ZONE F 3-3-2" Offset="167"/>
+    <Param Name="SHELF ZONE F 4-1-1" Offset="168"/>
+    <Param Name="SHELF ZONE F 4-1-2" Offset="169"/>
+    <Param Name="SHELF ZONE F 4-2-1" Offset="170"/>
+    <Param Name="SHELF ZONE F 4-2-2" Offset="171"/>
+    <Param Name="SHELF ZONE F 4-3-1" Offset="172"/>
+    <Param Name="SHELF ZONE F 4-3-2" Offset="173"/>
+    <Param Name="SHELF ZONE F 5-1-1" Offset="174"/>
+    <Param Name="SHELF ZONE F 5-1-2" Offset="175"/>
+    <Param Name="SHELF ZONE F 5-2-1" Offset="176"/>
+    <Param Name="SHELF ZONE F 5-2-2" Offset="177"/>
+    <Param Name="SHELF ZONE F 5-3-1" Offset="178"/>
+    <Param Name="SHELF ZONE F 5-3-2" Offset="179"/>
+                            
+    <Param Name="SHELF ZONE G 1-1-1" Offset="180"/>
+    <Param Name="SHELF ZONE G 1-1-2" Offset="181"/>
+    <Param Name="SHELF ZONE G 1-2-1" Offset="182"/>
+    <Param Name="SHELF ZONE G 1-2-2" Offset="183"/>
+    <Param Name="SHELF ZONE G 1-3-1" Offset="184"/>
+    <Param Name="SHELF ZONE G 1-3-2" Offset="185"/>
+    <Param Name="SHELF ZONE G 2-1-1" Offset="186"/>
+    <Param Name="SHELF ZONE G 2-1-2" Offset="187"/>
+    <Param Name="SHELF ZONE G 2-2-1" Offset="188"/>
+    <Param Name="SHELF ZONE G 2-2-2" Offset="189"/>
+    <Param Name="SHELF ZONE G 2-3-1" Offset="190"/>
+    <Param Name="SHELF ZONE G 2-3-2" Offset="191"/>
+    <Param Name="SHELF ZONE G 3-1-1" Offset="192"/>
+    <Param Name="SHELF ZONE G 3-1-2" Offset="193"/>
+    <Param Name="SHELF ZONE G 3-2-1" Offset="194"/>
+    <Param Name="SHELF ZONE G 3-2-2" Offset="195"/>
+    <Param Name="SHELF ZONE G 3-3-1" Offset="196"/>
+    <Param Name="SHELF ZONE G 3-3-2" Offset="197"/>
+    <Param Name="SHELF ZONE G 4-1-1" Offset="198"/>
+    <Param Name="SHELF ZONE G 4-1-2" Offset="199"/>
+    <Param Name="SHELF ZONE G 4-2-1" Offset="200"/>
+    <Param Name="SHELF ZONE G 4-2-2" Offset="201"/>
+    <Param Name="SHELF ZONE G 4-3-1" Offset="202"/>
+    <Param Name="SHELF ZONE G 4-3-2" Offset="203"/>
+    <Param Name="SHELF ZONE G 5-1-1" Offset="204"/>
+    <Param Name="SHELF ZONE G 5-1-2" Offset="205"/>
+    <Param Name="SHELF ZONE G 5-2-1" Offset="206"/>
+    <Param Name="SHELF ZONE G 5-2-2" Offset="207"/>
+    <Param Name="SHELF ZONE G 5-3-1" Offset="208"/>
+    <Param Name="SHELF ZONE G 5-3-2" Offset="209"/>
+                            
+    <Param Name="SHELF ZONE H 1-1-1" Offset="210"/>
+    <Param Name="SHELF ZONE H 1-1-2" Offset="211"/>
+    <Param Name="SHELF ZONE H 1-2-1" Offset="212"/>
+    <Param Name="SHELF ZONE H 1-2-2" Offset="213"/>
+    <Param Name="SHELF ZONE H 1-3-1" Offset="214"/>
+    <Param Name="SHELF ZONE H 1-3-2" Offset="215"/>
+    <Param Name="SHELF ZONE H 2-1-1" Offset="216"/>
+    <Param Name="SHELF ZONE H 2-1-2" Offset="217"/>
+    <Param Name="SHELF ZONE H 2-2-1" Offset="218"/>
+    <Param Name="SHELF ZONE H 2-2-2" Offset="219"/>
+    <Param Name="SHELF ZONE H 2-3-1" Offset="220"/>
+    <Param Name="SHELF ZONE H 2-3-2" Offset="221"/>
+    <Param Name="SHELF ZONE H 3-1-1" Offset="222"/>
+    <Param Name="SHELF ZONE H 3-1-2" Offset="223"/>
+    <Param Name="SHELF ZONE H 3-2-1" Offset="224"/>
+    <Param Name="SHELF ZONE H 3-2-2" Offset="225"/>
+    <Param Name="SHELF ZONE H 3-3-1" Offset="226"/>
+    <Param Name="SHELF ZONE H 3-3-2" Offset="227"/>
+    <Param Name="SHELF ZONE H 4-1-1" Offset="228"/>
+    <Param Name="SHELF ZONE H 4-1-2" Offset="229"/>
+    <Param Name="SHELF ZONE H 4-2-1" Offset="230"/>
+    <Param Name="SHELF ZONE H 4-2-2" Offset="231"/>
+    <Param Name="SHELF ZONE H 4-3-1" Offset="232"/>
+    <Param Name="SHELF ZONE H 4-3-2" Offset="233"/>
+    <Param Name="SHELF ZONE H 5-1-1" Offset="234"/>
+    <Param Name="SHELF ZONE H 5-1-2" Offset="235"/>
+    <Param Name="SHELF ZONE H 5-2-1" Offset="236"/>
+    <Param Name="SHELF ZONE H 5-2-2" Offset="237"/>
+    <Param Name="SHELF ZONE H 5-3-1" Offset="238"/>
+    <Param Name="SHELF ZONE H 5-3-2" Offset="239"/>
+  </PlcVar>
+
+  <PlcVar Name="GV_PIO.GV_DIGITAL_OUT" BufferType="BYTE" BufferSize="1" DataType="BOOL" Count="1" Tag="DIAGNOSTIC_DO" Index="1">
+    <Param Name="Y260_WATER_TANK_INLET_SOL" Offset="0"/>
+    <Param Name="Y261_WATER_TANK_OUTLET_SOL" Offset="1"/>
+    <Param Name="Y262_RESERVE" Offset="2"/>
+  </PlcVar>
+  <!--
+  <PlcVar Name="IO_DigiOut_GVL.Digital_Output[2]" Caption="DO_2" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DO" Index="241"/>
+  <PlcVar Name="IO_DigiOut_GVL.Digital_Output[3]" Caption="DO_3" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DO" Index="242"/>
+  <PlcVar Name="IO_DigiOut_GVL.Digital_Output[4]" Caption="DO_4" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DO" Index="243"/>
+  <PlcVar Name="IO_DigiOut_GVL.Digital_Output[5]" Caption="DO_5" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DO" Index="244"/>
+  <PlcVar Name="IO_DigiIn_GVL.Digital_Input[1]" Caption="DI_1" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DI" Index="245"/>
+  <PlcVar Name="IO_DigiIn_GVL.Digital_Input[2]" Caption="DI_2" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DI" Index="246"/>
+  <PlcVar Name="IO_DigiIn_GVL.Digital_Input[3]" Caption="DI_3" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DI" Index="247"/>
+  <PlcVar Name="IO_DigiIn_GVL.Digital_Input[4]" Caption="DI_4" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DI" Index="248"/>
+  <PlcVar Name="IO_DigiIn_GVL.Digital_Input[5]" Caption="DI_5" Type="BOOL" Size="1" Count="1" Tag="DIAGNOSTIC_DI" Index="249"/>
+  <AxsVar Count="ServoMotion_Parameters.MAX_AXES" PlcToHmi="ServoMotion_GVL.PlcToHmi" P2HSize="56" HmiToPlc="ServoMotion_GVL.HmiToPlc" H2PSize="64"/>
+  -->
+</Plc>

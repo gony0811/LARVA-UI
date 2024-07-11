@@ -1,0 +1,1542 @@
+﻿<UserControl x:Class="LARVA_UI.Views.BoxSelectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+             xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:local="clr-namespace:LARVA_UI.Views"
+             xmlns:ViewModels="clr-namespace:LARVA_UI.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Style x:Key="BoxSelectButtonStyle" TargetType="{x:Type dxc:SimpleButton}">
+            <Style.Triggers>
+                <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+                    <Setter Property="Padding" Value="27,11,27,11"/>
+                </Trigger>
+                <Trigger Property="Content" Value="{x:Null}">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="GlyphToContentOffset" Value="0"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="False"/>
+                        <Condition Property="IsChecked" Value="False"/>
+                        <Condition Property="IsPressed" Value="False"/>
+                    </MultiTrigger.Conditions>
+                </MultiTrigger>
+
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="LightGreen"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Background" Value="DarkGreen"/>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="LightGray"/>
+                </Trigger>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Padding" Value="27,11,27,11"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="LarvaLevelSelectionButtonStyle" TargetType="{x:Type dxc:SimpleButton}">
+            <Style.Triggers>
+                <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+                    <Setter Property="Padding" Value="27,11,27,11"/>
+                </Trigger>
+                <Trigger Property="Content" Value="{x:Null}">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="GlyphToContentOffset" Value="0"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True"/>
+                        <Condition Property="IsChecked" Value="False"/>
+                        <Condition Property="IsPressed" Value="True"/>
+                    </MultiTrigger.Conditions>
+                </MultiTrigger>
+
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="LightGreen"/>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="LightGray"/>
+                    <Setter Property="Background" Value="DarkGreen"/>
+                </Trigger>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Padding" Value="27,11,27,11"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="LightGray" Grid.Column="0">
+            <dxc:DXTabControl>
+                <dxc:DXTabItem Header="1구역" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxc:SimpleButton x:Name="STOCK_151" Grid.Row="0" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" IsChecked="False" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_151}" IsEnabled="{Binding IsEnabled_151}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_152" Grid.Row="0" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_152}" IsEnabled="{Binding IsEnabled_152}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_153" Grid.Row="0" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_153}" IsEnabled="{Binding IsEnabled_153}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_154" Grid.Row="0" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_154}" IsEnabled="{Binding IsEnabled_154}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_155"  Grid.Row="0" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_155}" IsEnabled="{Binding IsEnabled_155}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_156" Grid.Row="0" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_156}" IsEnabled="{Binding IsEnabled_156}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_141" Grid.Row="1" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_141}" IsEnabled="{Binding IsEnabled_141}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_142" Grid.Row="1" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_142}" IsEnabled="{Binding IsEnabled_142}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_143" Grid.Row="1" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_143}" IsEnabled="{Binding IsEnabled_143}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_144" Grid.Row="1" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_144}" IsEnabled="{Binding IsEnabled_144}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_145" Grid.Row="1" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_145}" IsEnabled="{Binding IsEnabled_145}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_146" Grid.Row="1" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_146}" IsEnabled="{Binding IsEnabled_146}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_131" Grid.Row="2" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_131}" IsEnabled="{Binding IsEnabled_131}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_132" Grid.Row="2" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_132}" IsEnabled="{Binding IsEnabled_132}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_133" Grid.Row="2" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_133}" IsEnabled="{Binding IsEnabled_133}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_134" Grid.Row="2" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_134}" IsEnabled="{Binding IsEnabled_134}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_135" Grid.Row="2" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_135}" IsEnabled="{Binding IsEnabled_135}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_136" Grid.Row="2" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_136}" IsEnabled="{Binding IsEnabled_136}" IsHitTestVisible="True" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_121" Grid.Row="3" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_121}" IsEnabled="{Binding IsEnabled_121}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_122" Grid.Row="3" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_122}" IsEnabled="{Binding IsEnabled_122}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_123" Grid.Row="3" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_123}" IsEnabled="{Binding IsEnabled_123}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_124" Grid.Row="3" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_124}" IsEnabled="{Binding IsEnabled_124}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_125" Grid.Row="3" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_125}" IsEnabled="{Binding IsEnabled_125}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_126" Grid.Row="3" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_126}" IsEnabled="{Binding IsEnabled_126}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_111" Grid.Row="4" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_111}" IsEnabled="{Binding IsEnabled_111}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_112" Grid.Row="4" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_112}" IsEnabled="{Binding IsEnabled_112}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_113" Grid.Row="4" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_113}" IsEnabled="{Binding IsEnabled_113}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_114" Grid.Row="4" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_114}" IsEnabled="{Binding IsEnabled_114}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_115" Grid.Row="4" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_115}" IsEnabled="{Binding IsEnabled_115}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton x:Name="STOCK_116" Grid.Row="4" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_116}" IsEnabled="{Binding IsEnabled_116}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem Header="2구역" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxc:SimpleButton x:Name="STOCK_251" Grid.Row="0" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_251}" IsEnabled="{Binding IsEnabled_251}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton  x:Name="STOCK_252" Grid.Row="0" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_252}" IsEnabled="{Binding IsEnabled_252}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_253}" IsEnabled="{Binding IsEnabled_253}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_254}" IsEnabled="{Binding IsEnabled_254}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_255}" IsEnabled="{Binding IsEnabled_255}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_256}" IsEnabled="{Binding IsEnabled_256}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_241}" IsEnabled="{Binding IsEnabled_241}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_242}" IsEnabled="{Binding IsEnabled_242}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_243}" IsEnabled="{Binding IsEnabled_243}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_244}" IsEnabled="{Binding IsEnabled_244}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_245}" IsEnabled="{Binding IsEnabled_245}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_246}" IsEnabled="{Binding IsEnabled_246}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_231}" IsEnabled="{Binding IsEnabled_231}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_232}" IsEnabled="{Binding IsEnabled_232}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_233}" IsEnabled="{Binding IsEnabled_233}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_234}" IsEnabled="{Binding IsEnabled_234}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_235}" IsEnabled="{Binding IsEnabled_235}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_236}" IsEnabled="{Binding IsEnabled_236}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_221}" IsEnabled="{Binding IsEnabled_221}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_222}" IsEnabled="{Binding IsEnabled_222}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_223}" IsEnabled="{Binding IsEnabled_223}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_224}" IsEnabled="{Binding IsEnabled_224}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_225}" IsEnabled="{Binding IsEnabled_225}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_226}" IsEnabled="{Binding IsEnabled_226}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_211}" IsEnabled="{Binding IsEnabled_211}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_212}" IsEnabled="{Binding IsEnabled_212}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_213}" IsEnabled="{Binding IsEnabled_213}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_214}" IsEnabled="{Binding IsEnabled_214}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_215}" IsEnabled="{Binding IsEnabled_215}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_216}" IsEnabled="{Binding IsEnabled_216}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem Header="3구역" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_351}" IsEnabled="{Binding IsEnabled_351}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_352}" IsEnabled="{Binding IsEnabled_352}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_353}" IsEnabled="{Binding IsEnabled_353}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_354}" IsEnabled="{Binding IsEnabled_354}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_355}" IsEnabled="{Binding IsEnabled_355}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_356}" IsEnabled="{Binding IsEnabled_356}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_341}" IsEnabled="{Binding IsEnabled_341}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_342}" IsEnabled="{Binding IsEnabled_342}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_343}" IsEnabled="{Binding IsEnabled_343}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_344}" IsEnabled="{Binding IsEnabled_344}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_345}" IsEnabled="{Binding IsEnabled_345}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_346}" IsEnabled="{Binding IsEnabled_346}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_331}" IsEnabled="{Binding IsEnabled_331}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_332}" IsEnabled="{Binding IsEnabled_332}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_333}" IsEnabled="{Binding IsEnabled_333}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_334}" IsEnabled="{Binding IsEnabled_334}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_335}" IsEnabled="{Binding IsEnabled_335}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_336}" IsEnabled="{Binding IsEnabled_336}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_321}" IsEnabled="{Binding IsEnabled_321}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_322}" IsEnabled="{Binding IsEnabled_322}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_323}" IsEnabled="{Binding IsEnabled_323}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_324}" IsEnabled="{Binding IsEnabled_324}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_325}" IsEnabled="{Binding IsEnabled_325}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_326}" IsEnabled="{Binding IsEnabled_326}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_311}" IsEnabled="{Binding IsEnabled_311}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_312}" IsEnabled="{Binding IsEnabled_312}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_313}" IsEnabled="{Binding IsEnabled_313}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_314}" IsEnabled="{Binding IsEnabled_314}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_315}" IsEnabled="{Binding IsEnabled_315}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_316}" IsEnabled="{Binding IsEnabled_316}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem Header="4구역" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_451}" IsEnabled="{Binding IsEnabled_451}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_452}" IsEnabled="{Binding IsEnabled_452}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_453}" IsEnabled="{Binding IsEnabled_453}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_454}" IsEnabled="{Binding IsEnabled_454}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_455}" IsEnabled="{Binding IsEnabled_455}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_456}" IsEnabled="{Binding IsEnabled_456}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_441}" IsEnabled="{Binding IsEnabled_441}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_442}" IsEnabled="{Binding IsEnabled_442}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_443}" IsEnabled="{Binding IsEnabled_443}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_444}" IsEnabled="{Binding IsEnabled_444}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_445}" IsEnabled="{Binding IsEnabled_445}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_446}" IsEnabled="{Binding IsEnabled_446}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_431}" IsEnabled="{Binding IsEnabled_431}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_432}" IsEnabled="{Binding IsEnabled_432}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_433}" IsEnabled="{Binding IsEnabled_433}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_434}" IsEnabled="{Binding IsEnabled_434}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_435}" IsEnabled="{Binding IsEnabled_435}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_436}" IsEnabled="{Binding IsEnabled_436}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_421}" IsEnabled="{Binding IsEnabled_421}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_422}" IsEnabled="{Binding IsEnabled_422}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_423}" IsEnabled="{Binding IsEnabled_423}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_424}" IsEnabled="{Binding IsEnabled_424}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_425}" IsEnabled="{Binding IsEnabled_425}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_426}" IsEnabled="{Binding IsEnabled_426}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_411}" IsEnabled="{Binding IsEnabled_411}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_412}" IsEnabled="{Binding IsEnabled_412}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_413}" IsEnabled="{Binding IsEnabled_413}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_414}" IsEnabled="{Binding IsEnabled_414}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_415}" IsEnabled="{Binding IsEnabled_415}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_416}" IsEnabled="{Binding IsEnabled_416}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem Header="5구역" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_551}" IsEnabled="{Binding IsEnabled_551}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_552}" IsEnabled="{Binding IsEnabled_552}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_553}" IsEnabled="{Binding IsEnabled_553}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_554}" IsEnabled="{Binding IsEnabled_554}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_555}" IsEnabled="{Binding IsEnabled_555}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_556}" IsEnabled="{Binding IsEnabled_556}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_541}" IsEnabled="{Binding IsEnabled_541}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_542}" IsEnabled="{Binding IsEnabled_542}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_543}" IsEnabled="{Binding IsEnabled_543}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_544}" IsEnabled="{Binding IsEnabled_544}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_545}" IsEnabled="{Binding IsEnabled_545}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_546}" IsEnabled="{Binding IsEnabled_546}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_531}" IsEnabled="{Binding IsEnabled_531}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_532}" IsEnabled="{Binding IsEnabled_532}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_533}" IsEnabled="{Binding IsEnabled_533}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_534}" IsEnabled="{Binding IsEnabled_534}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_535}" IsEnabled="{Binding IsEnabled_535}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_536}" IsEnabled="{Binding IsEnabled_536}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_521}" IsEnabled="{Binding IsEnabled_521}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_522}" IsEnabled="{Binding IsEnabled_522}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_523}" IsEnabled="{Binding IsEnabled_523}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_524}" IsEnabled="{Binding IsEnabled_524}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_525}" IsEnabled="{Binding IsEnabled_525}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_526}" IsEnabled="{Binding IsEnabled_526}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_511}" IsEnabled="{Binding IsEnabled_511}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_512}" IsEnabled="{Binding IsEnabled_512}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_513}" IsEnabled="{Binding IsEnabled_513}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_514}" IsEnabled="{Binding IsEnabled_514}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_515}" IsEnabled="{Binding IsEnabled_515}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_516}" IsEnabled="{Binding IsEnabled_516}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem Header="6구역" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_651}" IsEnabled="{Binding IsEnabled_651}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_652}" IsEnabled="{Binding IsEnabled_652}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_653}" IsEnabled="{Binding IsEnabled_653}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_654}" IsEnabled="{Binding IsEnabled_654}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_655}" IsEnabled="{Binding IsEnabled_655}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_656}" IsEnabled="{Binding IsEnabled_656}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_641}" IsEnabled="{Binding IsEnabled_641}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_642}" IsEnabled="{Binding IsEnabled_642}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_643}" IsEnabled="{Binding IsEnabled_643}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_644}" IsEnabled="{Binding IsEnabled_644}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_645}" IsEnabled="{Binding IsEnabled_645}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_646}" IsEnabled="{Binding IsEnabled_646}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_631}" IsEnabled="{Binding IsEnabled_631}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_632}" IsEnabled="{Binding IsEnabled_632}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_633}" IsEnabled="{Binding IsEnabled_633}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_634}" IsEnabled="{Binding IsEnabled_634}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_635}" IsEnabled="{Binding IsEnabled_635}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_636}" IsEnabled="{Binding IsEnabled_636}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_621}" IsEnabled="{Binding IsEnabled_621}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_622}" IsEnabled="{Binding IsEnabled_622}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_623}" IsEnabled="{Binding IsEnabled_623}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_624}" IsEnabled="{Binding IsEnabled_624}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_625}" IsEnabled="{Binding IsEnabled_625}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_626}" IsEnabled="{Binding IsEnabled_626}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_611}" IsEnabled="{Binding IsEnabled_611}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_612}" IsEnabled="{Binding IsEnabled_612}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_613}" IsEnabled="{Binding IsEnabled_613}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_614}" IsEnabled="{Binding IsEnabled_614}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_615}" IsEnabled="{Binding IsEnabled_615}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_616}" IsEnabled="{Binding IsEnabled_616}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem Header="7구역" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_751}" IsEnabled="{Binding IsEnabled_751}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_752}" IsEnabled="{Binding IsEnabled_752}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_753}" IsEnabled="{Binding IsEnabled_753}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_754}" IsEnabled="{Binding IsEnabled_754}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_755}" IsEnabled="{Binding IsEnabled_755}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_756}" IsEnabled="{Binding IsEnabled_756}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_741}" IsEnabled="{Binding IsEnabled_741}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_742}" IsEnabled="{Binding IsEnabled_742}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_743}" IsEnabled="{Binding IsEnabled_743}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_744}" IsEnabled="{Binding IsEnabled_744}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_745}" IsEnabled="{Binding IsEnabled_745}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_746}" IsEnabled="{Binding IsEnabled_746}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_731}" IsEnabled="{Binding IsEnabled_731}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_732}" IsEnabled="{Binding IsEnabled_732}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_733}" IsEnabled="{Binding IsEnabled_733}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_734}" IsEnabled="{Binding IsEnabled_734}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_735}" IsEnabled="{Binding IsEnabled_735}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_736}" IsEnabled="{Binding IsEnabled_736}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_721}" IsEnabled="{Binding IsEnabled_721}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_722}" IsEnabled="{Binding IsEnabled_722}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_723}" IsEnabled="{Binding IsEnabled_723}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_724}" IsEnabled="{Binding IsEnabled_724}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_725}" IsEnabled="{Binding IsEnabled_725}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_726}" IsEnabled="{Binding IsEnabled_726}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_711}" IsEnabled="{Binding IsEnabled_711}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_712}" IsEnabled="{Binding IsEnabled_712}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_713}" IsEnabled="{Binding IsEnabled_713}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_714}" IsEnabled="{Binding IsEnabled_714}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_715}" IsEnabled="{Binding IsEnabled_715}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_716}" IsEnabled="{Binding IsEnabled_716}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                    </Grid>
+                </dxc:DXTabItem>
+                <dxc:DXTabItem Header="8구역" Foreground="DarkBlue" FontSize="14" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.05*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_851}" IsEnabled="{Binding IsEnabled_851}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_852}" IsEnabled="{Binding IsEnabled_852}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_853}" IsEnabled="{Binding IsEnabled_853}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_854}" IsEnabled="{Binding IsEnabled_854}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_855}" IsEnabled="{Binding IsEnabled_855}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="0" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_856}" IsEnabled="{Binding IsEnabled_856}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_841}" IsEnabled="{Binding IsEnabled_841}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_842}" IsEnabled="{Binding IsEnabled_842}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_843}" IsEnabled="{Binding IsEnabled_843}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_844}" IsEnabled="{Binding IsEnabled_844}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_845}" IsEnabled="{Binding IsEnabled_845}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="1" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_846}" IsEnabled="{Binding IsEnabled_846}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_831}" IsEnabled="{Binding IsEnabled_831}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_832}" IsEnabled="{Binding IsEnabled_832}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_833}" IsEnabled="{Binding IsEnabled_833}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_834}" IsEnabled="{Binding IsEnabled_834}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_835}" IsEnabled="{Binding IsEnabled_835}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="2" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_836}" IsEnabled="{Binding IsEnabled_836}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_821}" IsEnabled="{Binding IsEnabled_821}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_822}" IsEnabled="{Binding IsEnabled_822}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_823}" IsEnabled="{Binding IsEnabled_823}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_824}" IsEnabled="{Binding IsEnabled_824}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_825}" IsEnabled="{Binding IsEnabled_825}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="3" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_826}" IsEnabled="{Binding IsEnabled_826}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="0" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_811}" IsEnabled="{Binding IsEnabled_811}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="1" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_812}" IsEnabled="{Binding IsEnabled_812}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="3" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_813}" IsEnabled="{Binding IsEnabled_813}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="4" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_814}" IsEnabled="{Binding IsEnabled_814}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="6" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_815}" IsEnabled="{Binding IsEnabled_815}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                        <dxc:SimpleButton Grid.Row="4" Grid.Column="7" Style="{StaticResource BoxSelectButtonStyle}" ButtonKind="Toggle" MinWidth="100" MinHeight="50" Content="{Binding Name_Stock_816}" IsEnabled="{Binding IsEnabled_816}" Margin="5 5 0 0">
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand EventName="Click" Command="{Binding BoxSelectionClickCommand}" PassEventArgsToCommand="True"/>
+                            </dxmvvm:Interaction.Triggers>
+                        </dxc:SimpleButton>
+                    </Grid>
+                </dxc:DXTabItem>
+            </dxc:DXTabControl>
+
+        </Border>
+
+        <Border Background="LightGray" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.07*"/>
+                    <RowDefinition Height="0.95*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="박스 선택" Grid.Row="0" FontSize="12" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkBlue" Margin="3"/>
+                <dxc:DXListBox ItemsSource="{Binding BoxSelectedItems}" Grid.Row="1" dxc:ScrollViewerTouchBehavior.IsEnabled="True">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="SelectionChanged" Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:DXListBox>
+            </Grid>
+                
+
+
+
+        </Border>
+
+        <Border Background="LightGray" Grid.Column="2" Padding="4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="생육 단계 설정" FontSize="12" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkBlue"/>
+                <dxc:SimpleButton x:Name="BTN_LARVA_LEVEL_0" Grid.Row="1" Style="{StaticResource LarvaLevelSelectionButtonStyle}" ButtonKind="Simple" MinWidth="100" MinHeight="30" Content="{Binding Name_btn_larva_level_0}" IsEnabled="{Binding IsEnabled_btn_larva_level_0}" IsHitTestVisible="True" Margin="5 5 0 0">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding LarvaLevel_0_ClickedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:SimpleButton>
+                <dxc:SimpleButton x:Name="BTN_LARVA_LEVEL_1" Grid.Row="2" Style="{StaticResource LarvaLevelSelectionButtonStyle}" ButtonKind="Simple" MinWidth="100" MinHeight="30" Content="{Binding Name_btn_larva_level_1}" IsEnabled="{Binding IsEnabled_btn_larva_level_1}" IsHitTestVisible="True" Margin="5 5 0 0">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding LarvaLevel_1_ClickedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:SimpleButton>
+                <dxc:SimpleButton x:Name="BTN_LARVA_LEVEL_2" Grid.Row="3" Style="{StaticResource LarvaLevelSelectionButtonStyle}" ButtonKind="Simple" MinWidth="100" MinHeight="30" Content="{Binding Name_btn_larva_level_2}" IsEnabled="{Binding IsEnabled_btn_larva_level_2}" IsHitTestVisible="True" Margin="5 5 0 0">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding LarvaLevel_2_ClickedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:SimpleButton>
+                <dxc:SimpleButton x:Name="BTN_LARVA_LEVEL_3" Grid.Row="4" Style="{StaticResource LarvaLevelSelectionButtonStyle}" ButtonKind="Simple" MinWidth="100" MinHeight="30" Content="{Binding Name_btn_larva_level_3}" IsEnabled="{Binding IsEnabled_btn_larva_level_3}" IsHitTestVisible="True" Margin="5 5 0 0">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding LarvaLevel_3_ClickedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:SimpleButton>
+                <dxc:SimpleButton x:Name="BTN_LARVA_LEVEL_4" Grid.Row="5" Style="{StaticResource LarvaLevelSelectionButtonStyle}" ButtonKind="Simple" MinWidth="100" MinHeight="30" Content="{Binding Name_btn_larva_level_4}" IsEnabled="{Binding IsEnabled_btn_larva_level_4}" IsHitTestVisible="True" Margin="5 5 0 0">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding LarvaLevel_4_ClickedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:SimpleButton>
+                <dxc:SimpleButton x:Name="BTN_LARVA_LEVEL_5" Grid.Row="6" Style="{StaticResource LarvaLevelSelectionButtonStyle}" ButtonKind="Simple" MinWidth="100" MinHeight="30" Content="{Binding Name_btn_larva_level_5}" IsEnabled="{Binding IsEnabled_btn_larva_level_5}" IsHitTestVisible="True" Margin="5 5 0 0">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding LarvaLevel_5_ClickedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:SimpleButton>
+                <dxc:SimpleButton x:Name="BTN_LARVA_LEVEL_6" Grid.Row="7" Style="{StaticResource LarvaLevelSelectionButtonStyle}" ButtonKind="Simple" MinWidth="100" MinHeight="30" Content="{Binding Name_btn_larva_level_6}" IsEnabled="{Binding IsEnabled_btn_larva_level_6}" IsHitTestVisible="True" Margin="5 5 0 0">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding LarvaLevel_6_ClickedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:SimpleButton>
+                <dxc:SimpleButton x:Name="BTN_LARVA_LEVEL_7" Grid.Row="8" Style="{StaticResource LarvaLevelSelectionButtonStyle}" ButtonKind="Simple" MinWidth="100" MinHeight="30" Content="{Binding Name_btn_larva_level_7}" IsEnabled="{Binding IsEnabled_btn_larva_level_7}" IsHitTestVisible="True" Margin="5 5 0 0">
+                    <dxmvvm:Interaction.Triggers>
+                        <dxmvvm:EventToCommand EventName="Click" Command="{Binding LarvaLevel_7_ClickedCommand}" PassEventArgsToCommand="True"/>
+                    </dxmvvm:Interaction.Triggers>
+                </dxc:SimpleButton>
+            </Grid>
+
+        </Border>
+    </Grid>
+</UserControl>
